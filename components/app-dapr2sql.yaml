@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dapr2sql
+#  namespace: your-namespace
+  labels:
+    app: dapr2sql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr2sql
+  template:
+    metadata:
+      labels:
+        app: dapr2sql
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr2sql"
+        dapr.io/app-port: "4000"
+    spec:
+      containers:
+      - name: dapr2sql
+        image: sihbher/dapr2sql:0.0.1
+        ports:
+        - containerPort: 4000
+        imagePullPolicy: Always
+        env:
+          - name: ASPNETCORE_URLS
+            value: "http://+:4000"
+          - name: SQL_CONNECTION_STRING
+            value: your_secret_sql_connection_string

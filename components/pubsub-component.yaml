@@ -1,0 +1,15 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub-rabbitmq-topic-sql
+#  namespace: your-namespace
+spec:
+  type: pubsub.rabbitmq
+  version: v1
+  metadata:
+  - name: host
+    value: your_rabbitmq_connectionstring
+  - name: autoAck
+    value: false
+scopes:
+  - dapr2sql
