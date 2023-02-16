@@ -1,3 +1,14 @@
+using System.Collections;
+
+Console.WriteLine("============== Env Variables: ==============");
+foreach (DictionaryEntry e in System.Environment.GetEnvironmentVariables())
+{
+    Console.WriteLine(e.Key + ":" + e.Value);
+}
+Console.Write($"================================================");
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
